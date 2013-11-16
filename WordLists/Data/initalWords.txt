@@ -1,0 +1,5 @@
+one|un|note|B|
+two|dau
+three|tri
+four|pedwar
+five|pump
