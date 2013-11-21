@@ -23,5 +23,8 @@ typedef enum {
 @property WLArea area;
 @property (strong, nonatomic) NSString *notes;
 
++(WLArea) areaFromString: (NSString *) str;
++(NSString *) areaToString: (WLArea) area;
+
 
 @end

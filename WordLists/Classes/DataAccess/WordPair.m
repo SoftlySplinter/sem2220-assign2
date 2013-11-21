@@ -10,12 +10,25 @@
 
 @implementation WordPair
 
-- (NSString *) description {
-    
-    return [NSString stringWithFormat: @"%@, %@ (c: %@ a: %@ n: %@", self.english, self.welsh, self.context, [self areaToString: self.area], self.notes];
++(WLArea) areaFromString:(NSString *)str {
+    switch ([str characterAtIndex:0]) {
+        case 'N':
+            return WLAreaNorth;
+        case 'S':
+            return WLAreaSouth;
+        case 'B':
+            return WLAreaBoth;
+        default:
+            return WLAreaNil;
+    }
 }
 
-- (NSString *) areaToString: (WLArea) area {
+- (NSString *) description {
+    
+    return [NSString stringWithFormat: @"%@, %@ (c: %@ a: %@ n: %@", self.english, self.welsh, self.context, [WordPair areaToString: self.area], self.notes];
+}
+
++ (NSString *) areaToString: (WLArea) area {
     switch (area) {
         case WLAreaNorth:
             return @"N";
