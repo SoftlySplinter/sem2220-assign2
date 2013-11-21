@@ -57,7 +57,7 @@
     
     NSLog(@"WordPair: %@", wordPair);
     
-    [[SharedData defaultInstance] addWordsWithEnglish: wordPair.english welsh: wordPair.welsh context: Nil area: WLAreaNil notes: Nil];
+    [[SharedData defaultInstance] addWordsWithEnglish: wordPair.english welsh: wordPair.welsh context: wordPair.context area: wordPair.area notes: wordPair.notes];
     
     [self.tableView reloadData];
 }

@@ -7,6 +7,7 @@
 //
 
 #import "AddWordViewController.h"
+#import "WordPair.h";
 
 @interface AddWordViewController ()
 
@@ -47,11 +48,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (WLArea) areaFromSelection: (UISegmentedControl *) selection {
+    switch ([selection selectedSegmentIndex]) {
+        case 0:
+            return WLAreaNorth;
+        case 1:
+            return WLAreaSouth;
+        case 2:
+            return WLAreaBoth;
+        default:
+            return WLAreaNil;
+    }
+}
+
 - (WordPair *) wordPair {
     
     WordPair *content = [[WordPair alloc] init];
     content.english = self.englishField.text;
     content.welsh = self.welshField.text;
+    content.context = self.contextField.text;
+    content.area = [self areaFromSelection: self.areaSelection];
+    content.notes = self.noyesField.text;
     return content; 
 }
 
