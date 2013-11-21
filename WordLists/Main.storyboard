@@ -199,7 +199,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6gu-0c-czp">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="6gu-0c-czp">
                                 <segments>
                                     <segment title="North"/>
                                     <segment title="South"/>
@@ -234,9 +234,9 @@
                             <constraint firstAttribute="trailing" secondItem="G6q-MT-Ahb" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Hk3-bm-2Zt"/>
                             <constraint firstItem="ia7-ck-M1r" firstAttribute="top" secondItem="kFG-u9-IBV" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="JDE-SW-u8o"/>
                             <constraint firstItem="Vsb-Md-d3J" firstAttribute="baseline" secondItem="WX7-E5-t4U" secondAttribute="baseline" type="default" id="LDk-WN-44y"/>
-                            <constraint firstItem="6gu-0c-czp" firstAttribute="top" secondItem="KLL-Z9-2Tq" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="LwA-qQ-OLz"/>
-                            <constraint firstItem="kFG-u9-IBV" firstAttribute="top" secondItem="o63-Ax-KBI" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Rhh-1E-AnN"/>
+                            <constraint firstItem="o63-Ax-KBI" firstAttribute="top" secondItem="SEF-gW-OHS" secondAttribute="top" constant="132" id="SNk-Hn-1yE"/>
                             <constraint firstItem="cko-eu-hjM" firstAttribute="trailing" secondItem="SEF-gW-OHS" secondAttribute="trailing" type="default" id="T54-ei-XJg"/>
+                            <constraint firstItem="o63-Ax-KBI" firstAttribute="centerY" secondItem="KLL-Z9-2Tq" secondAttribute="centerY" type="default" id="V01-In-sid"/>
                             <constraint firstAttribute="trailing" secondItem="Vsb-Md-d3J" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="VC0-wR-hYb"/>
                             <constraint firstItem="cko-eu-hjM" firstAttribute="top" secondItem="SEF-gW-OHS" secondAttribute="top" type="default" id="W55-AH-gnx"/>
                             <constraint firstItem="G6q-MT-Ahb" firstAttribute="leading" secondItem="SEF-gW-OHS" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ZBA-EH-tuQ"/>
@@ -298,6 +298,41 @@
         <image name="906-chat-3.png" width="28" height="26"/>
         <image name="977-checkbox.png" width="28" height="28"/>
     </resources>
+    <classes>
+        <class className="AddWordViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddWordViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="areaSelection" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="contextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="englishField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="noyesField" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="welshField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+        <class className="WordListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WordListViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelAdd:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="confirmAdd:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="languageChanged:"/>
+                <relationship kind="outlet" name="languageChoice" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="WordTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WordTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="word" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="wordList" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
