@@ -107,7 +107,7 @@
     for(NSString *line in lines) {
         NSArray *elements = [line componentsSeparatedByString: @"|"];
         NSLog(@"elements: %@", elements);
-        [self addWordsWithEnglish: elements[0] welsh: elements[1]];
+        [self addWordsWithEnglish: elements[0] welsh: elements[1] context: Nil area: WLAreaNil notes: Nil];
     }
 }
 
@@ -212,7 +212,10 @@
 }
 
 - (void) addWordsWithEnglish: (NSString *) english
-                       welsh: (NSString *) welsh {
+                       welsh: (NSString *) welsh
+                     context: (NSString *) context
+                        area:(WLArea) area
+                       notes: (NSString *) notes {
     
     NSInteger englishId = [self insertWordPhrase: english forLanguage: WLLanguageSettingEnglish];
     NSInteger welshId = [self insertWordPhrase: welsh forLanguage: WLLanguageSettingWelsh];

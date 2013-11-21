@@ -10,6 +10,7 @@
 #import "SharedData.h"
 #import "AddWordViewController.h"
 #import "WordTableCell.h"
+#import "WordPair.h"
 
 @interface WordListViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *languageChoice;
@@ -56,7 +57,7 @@
     
     NSLog(@"WordPair: %@", wordPair);
     
-    [[SharedData defaultInstance] addWordsWithEnglish: wordPair.english welsh: wordPair.welsh];
+    [[SharedData defaultInstance] addWordsWithEnglish: wordPair.english welsh: wordPair.welsh context: Nil area: WLAreaNil notes: Nil];
     
     [self.tableView reloadData];
 }

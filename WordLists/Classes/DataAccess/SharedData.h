@@ -23,7 +23,10 @@ typedef enum {
 - (void) initialiseWithDataFromFile: (NSString *) filename;
 
 - (void) addWordsWithEnglish: (NSString *) english
-                       welsh: (NSString *) welsh;
+                       welsh: (NSString *) welsh
+                     context: (NSString *) context
+                        area:(WLArea) area
+                       notes: (NSString *) notes;
 
 - (NSInteger) numberOfWordsForLanguage: (WLLanguageSetting) language;
 
