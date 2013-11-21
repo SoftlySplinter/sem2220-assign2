@@ -14,6 +14,14 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *welshField;
 
+@property (weak, nonatomic) IBOutlet UITextField *contextField;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *areaSelection;
+
+@property (weak, nonatomic) IBOutlet UITextView *noyesField;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+
 @end
 
 @implementation AddWordViewController
@@ -45,6 +53,15 @@
     content.english = self.englishField.text;
     content.welsh = self.welshField.text;
     return content; 
+}
+
+-(BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if(sender == self.doneButton) {
+        WordPair *pair = [self wordPair];
+        return ([pair.english length] != 0 ||
+                [pair.welsh length] != 0);
+    }
+    return YES;
 }
 
 @end
