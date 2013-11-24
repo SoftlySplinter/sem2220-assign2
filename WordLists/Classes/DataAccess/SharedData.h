@@ -10,11 +10,6 @@
 #import "WordPair.h"
 #import "WordLink.h"
 
-typedef enum {
-    WLLanguageSettingEnglish,
-    WLLanguageSettingWelsh
-} WLLanguageSetting;
-
 @interface SharedData : NSObject
 
 + (id) defaultInstance;

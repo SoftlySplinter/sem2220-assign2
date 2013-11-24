@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5389169D18427090009D3AE2 /* ShowWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5389169C18427090009D3AE2 /* ShowWordViewController.m */; };
+		53FFACCE184253B4002BFE7B /* WordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FFACCD184253B4002BFE7B /* WordViewController.m */; };
+		53FFACD11842568F002BFE7B /* WordViewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FFACD01842568F002BFE7B /* WordViewTableCell.m */; };
 		6BF5DE1F18304BB3003A614C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BF5DE1E18304BB3003A614C /* UIKit.framework */; };
 		6BF5DE2118304BB3003A614C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BF5DE2018304BB3003A614C /* Foundation.framework */; };
 		6BF5DE2318304BB3003A614C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BF5DE2218304BB3003A614C /* CoreGraphics.framework */; };
@@ -34,6 +37,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5389169B18427090009D3AE2 /* ShowWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWordViewController.h; sourceTree = "<group>"; };
+		5389169C18427090009D3AE2 /* ShowWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWordViewController.m; sourceTree = "<group>"; };
+		53FFACCC184253B4002BFE7B /* WordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WordViewController.h; path = Classes/WordViewController.h; sourceTree = "<group>"; };
+		53FFACCD184253B4002BFE7B /* WordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WordViewController.m; path = Classes/WordViewController.m; sourceTree = "<group>"; };
+		53FFACCF1842568F002BFE7B /* WordViewTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WordViewTableCell.h; path = Classes/WordViewTableCell.h; sourceTree = "<group>"; };
+		53FFACD01842568F002BFE7B /* WordViewTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WordViewTableCell.m; path = Classes/WordViewTableCell.m; sourceTree = "<group>"; };
 		6BF5DE1B18304BB3003A614C /* WordLists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordLists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BF5DE1E18304BB3003A614C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6BF5DE2018304BB3003A614C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -158,9 +167,15 @@
 				6BF5DE4D18304F73003A614C /* AddWordViewController.m */,
 				6BF5DE4F183050E3003A614C /* WordListViewController.h */,
 				6BF5DE50183050E3003A614C /* WordListViewController.m */,
+				53FFACCC184253B4002BFE7B /* WordViewController.h */,
+				53FFACCD184253B4002BFE7B /* WordViewController.m */,
+				5389169B18427090009D3AE2 /* ShowWordViewController.h */,
+				5389169C18427090009D3AE2 /* ShowWordViewController.m */,
 				6BF5DE5818306264003A614C /* DataAccess */,
 				6BF5DE6318318231003A614C /* WordTableCell.h */,
 				6BF5DE6418318231003A614C /* WordTableCell.m */,
+				53FFACCF1842568F002BFE7B /* WordViewTableCell.h */,
+				53FFACD01842568F002BFE7B /* WordViewTableCell.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -270,6 +285,9 @@
 				6BF5DE62183176B8003A614C /* WordPair.m in Sources */,
 				6BF5DE6518318231003A614C /* WordTableCell.m in Sources */,
 				6BFE9FA918344270009E9931 /* WordLink.m in Sources */,
+				53FFACCE184253B4002BFE7B /* WordViewController.m in Sources */,
+				53FFACD11842568F002BFE7B /* WordViewTableCell.m in Sources */,
+				5389169D18427090009D3AE2 /* ShowWordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

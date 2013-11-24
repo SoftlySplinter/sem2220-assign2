@@ -10,16 +10,28 @@
 
 @implementation WordPair
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.area = WLAreaBoth;
+    }
+    return self;
+}
+
 +(WLArea) areaFromString:(NSString *)str {
+    if(str == Nil || [str length] == 0) return WLAreaBoth;
+    
+    NSLog(@"Area from string: %c", [str characterAtIndex:0]);
     switch ([str characterAtIndex:0]) {
         case 'N':
             return WLAreaNorth;
         case 'S':
             return WLAreaSouth;
         case 'B':
-            return WLAreaBoth;
+            // Fallthrough intended
         default:
-            return WLAreaNil;
+            return WLAreaBoth;
     }
 }
 
@@ -31,15 +43,13 @@
 + (NSString *) areaToString: (WLArea) area {
     switch (area) {
         case WLAreaNorth:
-            return @"N";
+            return @"North";
         case WLAreaSouth:
-            return @"S";
+            return @"South";
         case WLAreaBoth:
-            return @"B";
-        case WLAreaNil:
-            // Fallthrough intended to catch all cases.
+            // Fallthrough intended
         default:
-            return Nil;
+            return @"Both";
     }
 }
 
