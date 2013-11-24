@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RevisionViewController : UIViewController
+@interface RevisionViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>
 
 @end
