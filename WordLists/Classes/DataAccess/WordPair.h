@@ -11,8 +11,7 @@
 typedef enum {
     WLAreaNorth,
     WLAreaSouth,
-    WLAreaBoth,
-    WLAreaNil
+    WLAreaBoth
 } WLArea;
 
 @interface WordPair : NSObject

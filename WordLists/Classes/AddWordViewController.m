@@ -7,7 +7,7 @@
 //
 
 #import "AddWordViewController.h"
-#import "WordPair.h";
+#import "WordPair.h"
 
 @interface AddWordViewController ()
 
@@ -55,9 +55,9 @@
         case 1:
             return WLAreaSouth;
         case 2:
-            return WLAreaBoth;
+            // Fallthrough intended
         default:
-            return WLAreaNil;
+            return WLAreaBoth;
     }
 }
 
