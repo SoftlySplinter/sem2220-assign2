@@ -106,11 +106,14 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="h02-Mf-qE6"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iv3-Tx-Y12">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="rXQ-nq-xNZ"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="8qM-mU-abY" id="Md1-qi-aw9"/>
                                     <outlet property="delegate" destination="8qM-mU-abY" id="4gv-0p-zWI"/>
@@ -133,6 +136,9 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJE-N3-wxg">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="PCq-BT-f0t"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                 <state key="normal" title="Confirm">
                                     <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -147,9 +153,6 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Select the correct translation:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijC-Xr-taW">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="pkM-Sn-6hU"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -168,9 +171,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="XjR-D3-877" firstAttribute="top" secondItem="iv3-Tx-Y12" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="0XD-pL-JFZ"/>
                             <constraint firstAttribute="trailing" secondItem="XjR-D3-877" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="4Z9-ZN-8z6"/>
-                            <constraint firstItem="dJE-N3-wxg" firstAttribute="top" secondItem="iv3-Tx-Y12" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="8uY-5S-tEf"/>
                             <constraint firstItem="dJE-N3-wxg" firstAttribute="leading" secondItem="XjR-D3-877" secondAttribute="leading" type="default" id="D0t-uO-1vf"/>
                             <constraint firstAttribute="trailing" secondItem="ijC-Xr-taW" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Ejk-NW-TWT"/>
                             <constraint firstAttribute="bottom" secondItem="WBI-KY-XoI" secondAttribute="bottom" constant="77" id="LVh-xH-rxX"/>
@@ -206,18 +207,69 @@
             </objects>
             <point key="canvasLocation" x="-1683" y="342"/>
         </scene>
-        <!--View Controller - Results-->
+        <!--Results View Controller - Results-->
         <scene sceneID="EOa-of-6ZG">
             <objects>
-                <viewController id="sUQ-Gl-mOc" sceneMemberID="viewController">
+                <viewController id="sUQ-Gl-mOc" customClass="ResultsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mrs-mK-p5J">
                         <rect key="frame" x="0.0" y="44" width="320" height="475"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="You Scored:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umh-t6-MFP">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="SUa-gC-oKd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="/" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxA-mV-StY">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5t-tn-yAb">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="score" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rnS-3X-CDu">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Some text saying how good" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="LmX-qW-2RK">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="1di-fu-gLM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BxA-mV-StY" firstAttribute="leading" secondItem="rnS-3X-CDu" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="4TM-FN-cFn"/>
+                            <constraint firstItem="LmX-qW-2RK" firstAttribute="leading" secondItem="mrs-mK-p5J" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="5oH-WC-7RO"/>
+                            <constraint firstItem="LmX-qW-2RK" firstAttribute="top" secondItem="rnS-3X-CDu" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="HBt-LV-yXM"/>
+                            <constraint firstItem="rnS-3X-CDu" firstAttribute="baseline" secondItem="BxA-mV-StY" secondAttribute="baseline" type="default" id="KUS-vu-kFj"/>
+                            <constraint firstItem="umh-t6-MFP" firstAttribute="leading" secondItem="mrs-mK-p5J" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="KkO-VP-0sf"/>
+                            <constraint firstAttribute="trailing" secondItem="umh-t6-MFP" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="OcH-N1-gDK"/>
+                            <constraint firstItem="q5t-tn-yAb" firstAttribute="baseline" secondItem="BxA-mV-StY" secondAttribute="baseline" type="default" id="XfW-41-zNS"/>
+                            <constraint firstItem="rnS-3X-CDu" firstAttribute="top" secondItem="mrs-mK-p5J" secondAttribute="top" constant="72" id="bKW-1n-EZT"/>
+                            <constraint firstItem="q5t-tn-yAb" firstAttribute="leading" secondItem="BxA-mV-StY" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="beO-dm-wBT"/>
+                            <constraint firstAttribute="trailing" secondItem="LmX-qW-2RK" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="esA-e8-PAs"/>
+                            <constraint firstItem="LmX-qW-2RK" firstAttribute="centerX" secondItem="BxA-mV-StY" secondAttribute="centerX" type="default" id="hkS-2v-HjS"/>
+                            <constraint firstItem="umh-t6-MFP" firstAttribute="top" secondItem="mrs-mK-p5J" secondAttribute="top" constant="20" symbolic="YES" type="default" id="qC7-Lp-wOT"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Results" id="uw3-Cd-iIJ">
                         <barButtonItem key="backBarButtonItem" title="Play Again" id="Qg9-Gb-R3c"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="congratsField" destination="LmX-qW-2RK" id="uqQ-oW-lYM"/>
+                        <outlet property="scoreField" destination="rnS-3X-CDu" id="tuR-wB-4hR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5dq-NL-YZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -589,6 +641,13 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
+        <class className="ResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ResultsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="congratsField" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scoreField" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="RevisionViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RevisionViewController.h"/>
             <relationships>
@@ -618,8 +677,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WordListViewController.h"/>
             <relationships>
                 <relationship kind="action" name="cancelAdd:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="action" name="confirmAdd:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="action" name="languageChanged:"/>
                 <relationship kind="outlet" name="languageChoice" candidateClass="UISegmentedControl"/>
             </relationships>
         </class>
