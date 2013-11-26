@@ -27,6 +27,7 @@
 @property NSInteger correct;
 @property NSInteger attempts;
 @property BOOL shouldSegue;
+@property WLLanguageSetting lang;
 
 @end
 
@@ -78,7 +79,6 @@
 }
 
 -(void) nextQuestion {
-    NSLog(@"Generating next question");
     if(self.questionNumber == QUESTIONS - 1) {
         [self.finalConfirmButton setHidden:NO];
         [self.confirmButton setHidden:YES];
@@ -93,28 +93,28 @@
 
 -(void) generateQuestion {
     [self.choices removeAllObjects];
-    NSInteger noWords = [[SharedData defaultInstance] numberOfWordsForLanguage:WLLanguageSettingWelsh];
+    
+    WLLanguageSetting languages[2] = {WLLanguageSettingEnglish, WLLanguageSettingWelsh};
+    
+    self.lang = languages[random() % 2];
+    
+    NSInteger noWords = [[SharedData defaultInstance] numberOfWordsForLanguage:self.lang];
     
     
     while([self.choices count] < CHOICES) {
         NSInteger answerIndex = random() % noWords;
-        WordLink *answerWord = [[SharedData defaultInstance] wordPairForIndexPosition:answerIndex language:WLLanguageSettingWelsh];
+        WordLink *answerWord = [[SharedData defaultInstance] wordPairForIndexPosition:answerIndex language:self.lang];
         WordPair *answerPair = [self selectAnswerFromLink: answerWord];
         
         if([self.choices containsObject:answerPair]) {
-            NSLog(@"Dup found...");
             continue;
         }
-        
-        NSLog(@"Added %@", answerPair);
         [self.choices addObject:answerPair];
     }
     
-    NSLog(@"%@", self.choices);
-    
     self.answer = random() % [self.choices count];
     WordPair *answerPair = self.choices[self.answer];
-    self.anserLabel.text = [answerPair welshWithContext];
+    self.anserLabel.text = [answerPair languageWithContext: self.lang];
     
     [self.answerSelection reloadAllComponents];
 }
@@ -135,7 +135,8 @@
 
 -(NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     WordPair *pair = self.choices[row];
-    return [NSString stringWithFormat:@"%@", pair.english];
+    
+    return [NSString stringWithFormat:@"%@", [pair translation: self.lang]];
 }
 
 -(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {

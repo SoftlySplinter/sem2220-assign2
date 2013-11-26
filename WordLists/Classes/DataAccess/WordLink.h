@@ -9,11 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "WordPair.h"
 
-typedef enum {
-    WLLanguageSettingEnglish,
-    WLLanguageSettingWelsh
-} WLLanguageSetting;
-
 @interface WordLink : NSObject
 
 @property (strong, nonatomic) NSString *wordPhrase;

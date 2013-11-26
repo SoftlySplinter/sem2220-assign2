@@ -51,11 +51,27 @@
     }
 }
 
--(NSString *) welshWithContext {
-    if([self.context length] < 1) {
+-(NSString *) language:(WLLanguageSetting)language {
+    if(language == WLLanguageSettingEnglish) {
+        return self.english;
+    } else {
+        return self.welsh;
+    }
+}
+
+-(NSString *) translation:(WLLanguageSetting)language {
+    if(language == WLLanguageSettingEnglish) {
         return self.welsh;
     } else {
-        return [NSString stringWithFormat:@"%@ (%@)", self.welsh, self.context];
+        return self.english;
+    }
+}
+
+-(NSString *) languageWithContext: (WLLanguageSetting) language {
+    if([self.context length] < 1) {
+        return [self language: language];
+    } else {
+        return [NSString stringWithFormat:@"%@ (%@)", [self language:language], self.context];
     }
 }
 
