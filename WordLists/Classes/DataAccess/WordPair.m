@@ -21,8 +21,6 @@
 
 +(WLArea) areaFromString:(NSString *)str {
     if(str == Nil || [str length] == 0) return WLAreaBoth;
-    
-    NSLog(@"Area from string: %c", [str characterAtIndex:0]);
     switch ([str characterAtIndex:0]) {
         case 'N':
             return WLAreaNorth;
@@ -51,6 +49,36 @@
         default:
             return @"Both";
     }
+}
+
+-(NSString *) language:(WLLanguageSetting)language {
+    if(language == WLLanguageSettingEnglish) {
+        return self.english;
+    } else {
+        return self.welsh;
+    }
+}
+
+-(NSString *) translation:(WLLanguageSetting)language {
+    if(language == WLLanguageSettingEnglish) {
+        return self.welsh;
+    } else {
+        return self.english;
+    }
+}
+
+-(NSString *) languageWithContext: (WLLanguageSetting) language {
+    if([self.context length] < 1) {
+        return [self language: language];
+    } else {
+        return [NSString stringWithFormat:@"%@ (%@)", [self language:language], self.context];
+    }
+}
+
+-(BOOL) isEqual:(id)object {
+    NSLog(@"Is Equal called");
+    WordPair *other = (WordPair *) object;
+    return [self.english isEqual:other.english] && [self.welsh isEqual:other.welsh];
 }
 
 @end

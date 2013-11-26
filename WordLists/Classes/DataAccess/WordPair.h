@@ -14,6 +14,11 @@ typedef enum {
     WLAreaBoth
 } WLArea;
 
+typedef enum {
+    WLLanguageSettingEnglish,
+    WLLanguageSettingWelsh
+} WLLanguageSetting;
+
 @interface WordPair : NSObject
 
 @property (strong, nonatomic) NSString *english;
@@ -24,6 +29,10 @@ typedef enum {
 
 +(WLArea) areaFromString: (NSString *) str;
 +(NSString *) areaToString: (WLArea) area;
+
+-(NSString *) language: (WLLanguageSetting) language;
+-(NSString *) translation: (WLLanguageSetting) language;
+-(NSString *) languageWithContext: (WLLanguageSetting) language;
 
 
 @end

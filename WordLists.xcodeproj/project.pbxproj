@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		530706BE1844FE350077966C /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 530706BD1844FE350077966C /* ResultsViewController.m */; };
 		5389169D18427090009D3AE2 /* ShowWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5389169C18427090009D3AE2 /* ShowWordViewController.m */; };
+		538916A018427B66009D3AE2 /* RevisionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5389169F18427B66009D3AE2 /* RevisionViewController.m */; };
 		53FFACCE184253B4002BFE7B /* WordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FFACCD184253B4002BFE7B /* WordViewController.m */; };
 		53FFACD11842568F002BFE7B /* WordViewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FFACD01842568F002BFE7B /* WordViewTableCell.m */; };
 		6BF5DE1F18304BB3003A614C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BF5DE1E18304BB3003A614C /* UIKit.framework */; };
@@ -37,8 +39,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		530706BC1844FE350077966C /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResultsViewController.h; path = Classes/ResultsViewController.h; sourceTree = "<group>"; };
+		530706BD1844FE350077966C /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResultsViewController.m; path = Classes/ResultsViewController.m; sourceTree = "<group>"; };
 		5389169B18427090009D3AE2 /* ShowWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWordViewController.h; sourceTree = "<group>"; };
 		5389169C18427090009D3AE2 /* ShowWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWordViewController.m; sourceTree = "<group>"; };
+		5389169E18427B66009D3AE2 /* RevisionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RevisionViewController.h; path = Classes/RevisionViewController.h; sourceTree = "<group>"; };
+		5389169F18427B66009D3AE2 /* RevisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RevisionViewController.m; path = Classes/RevisionViewController.m; sourceTree = "<group>"; };
 		53FFACCC184253B4002BFE7B /* WordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WordViewController.h; path = Classes/WordViewController.h; sourceTree = "<group>"; };
 		53FFACCD184253B4002BFE7B /* WordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WordViewController.m; path = Classes/WordViewController.m; sourceTree = "<group>"; };
 		53FFACCF1842568F002BFE7B /* WordViewTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WordViewTableCell.h; path = Classes/WordViewTableCell.h; sourceTree = "<group>"; };
@@ -171,6 +177,10 @@
 				53FFACCD184253B4002BFE7B /* WordViewController.m */,
 				5389169B18427090009D3AE2 /* ShowWordViewController.h */,
 				5389169C18427090009D3AE2 /* ShowWordViewController.m */,
+				5389169E18427B66009D3AE2 /* RevisionViewController.h */,
+				5389169F18427B66009D3AE2 /* RevisionViewController.m */,
+				530706BC1844FE350077966C /* ResultsViewController.h */,
+				530706BD1844FE350077966C /* ResultsViewController.m */,
 				6BF5DE5818306264003A614C /* DataAccess */,
 				6BF5DE6318318231003A614C /* WordTableCell.h */,
 				6BF5DE6418318231003A614C /* WordTableCell.m */,
@@ -288,6 +298,8 @@
 				53FFACCE184253B4002BFE7B /* WordViewController.m in Sources */,
 				53FFACD11842568F002BFE7B /* WordViewTableCell.m in Sources */,
 				5389169D18427090009D3AE2 /* ShowWordViewController.m in Sources */,
+				538916A018427B66009D3AE2 /* RevisionViewController.m in Sources */,
+				530706BE1844FE350077966C /* ResultsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
