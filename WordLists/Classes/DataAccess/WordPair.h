@@ -24,6 +24,7 @@ typedef enum {
 
 +(WLArea) areaFromString: (NSString *) str;
 +(NSString *) areaToString: (WLArea) area;
+-(NSString *) welshWithContext;
 
 
 @end
