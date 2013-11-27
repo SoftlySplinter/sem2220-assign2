@@ -75,6 +75,14 @@
     }
 }
 
+-(NSString *) translationWithContext: (WLLanguageSetting) language {
+    if([self.context length] < 1) {
+        return [self translation: language];
+    } else {
+        return [NSString stringWithFormat:@"%@ (%@)", [self translation:language], self.context];
+    }
+}
+
 -(BOOL) isEqual:(id)object {
     NSLog(@"Is Equal called");
     WordPair *other = (WordPair *) object;

@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Aberystwyth University. All rights reserved.
 //
 
-#import "ResultsViewController.h"
+#import "TranslatorGameResultsViewController.h"
 
-@interface ResultsViewController()
+@interface TranslatorGameResultsViewController()
 @property (weak, nonatomic) IBOutlet UILabel *scoreField;
 @property (weak, nonatomic) IBOutlet UILabel *congratsField;
 
 @end
 
-@implementation ResultsViewController
+@implementation TranslatorGameResultsViewController
 
 -(void) viewDidLoad {
     self.scoreField.text = [NSString stringWithFormat:@"%d", self.score];

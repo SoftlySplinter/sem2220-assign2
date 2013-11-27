@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Aberystwyth University. All rights reserved.
 //
 
-#import "RevisionViewController.h"
+#import "TranslatorGameViewController.h"
 #import "SharedData.h"
-#import "ResultsViewController.h"
+#import "TranslatorGameResultsViewController.h"
 
 #define QUESTIONS 10
 #define ATTEMPTS 2
 #define CHOICES 4
 
-@interface RevisionViewController()
+@interface TranslatorGameViewController()
 @property (weak, nonatomic) IBOutlet UIPickerView *answerSelection;
 @property (weak, nonatomic) IBOutlet UIButton *confirmButton;
 @property (weak, nonatomic) IBOutlet UIButton *finalConfirmButton;
@@ -31,7 +31,7 @@
 
 @end
 
-@implementation RevisionViewController
+@implementation TranslatorGameViewController
 
 -(void) viewDidLoad {
     self.choices = [[NSMutableArray alloc] initWithCapacity:CHOICES];
@@ -94,17 +94,9 @@
 -(void) generateQuestion {
     [self.choices removeAllObjects];
     
-    WLLanguageSetting languages[2] = {WLLanguageSettingEnglish, WLLanguageSettingWelsh};
-    
-    self.lang = languages[random() % 2];
-    
-    NSInteger noWords = [[SharedData defaultInstance] numberOfWordsForLanguage:self.lang];
-    
-    
+    self.lang = [SharedData randomLanguage];
     while([self.choices count] < CHOICES) {
-        NSInteger answerIndex = random() % noWords;
-        WordLink *answerWord = [[SharedData defaultInstance] wordPairForIndexPosition:answerIndex language:self.lang];
-        WordPair *answerPair = [self selectAnswerFromLink: answerWord];
+        WordPair *answerPair = [[SharedData defaultInstance] randomWordPair:self.lang];
         
         if([self.choices containsObject:answerPair]) {
             continue;
@@ -117,12 +109,6 @@
     self.anserLabel.text = [answerPair languageWithContext: self.lang];
     
     [self.answerSelection reloadAllComponents];
-}
-
--(WordPair *) selectAnswerFromLink: (WordLink *) link {
-    NSInteger length = [link.wordPairs count];
-    NSInteger i = random() % length;
-    return [link.wordPairs objectAtIndex:i];
 }
 
 -(NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -144,7 +130,7 @@
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    ResultsViewController *results = segue.destinationViewController;
+    TranslatorGameResultsViewController *results = segue.destinationViewController;
     results.score = self.correct;
 }
 

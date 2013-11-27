@@ -27,5 +27,7 @@
 
 - (WordLink *) wordPairForIndexPosition: (NSInteger) index language: (WLLanguageSetting) language;
 
++ (WLLanguageSetting) randomLanguage;
+- (WordPair *) randomWordPair: (WLLanguageSetting) language;
 
 @end

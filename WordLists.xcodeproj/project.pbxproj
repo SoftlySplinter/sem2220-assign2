@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		530706BE1844FE350077966C /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 530706BD1844FE350077966C /* ResultsViewController.m */; };
+		530706BE1844FE350077966C /* TranslatorGameResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 530706BD1844FE350077966C /* TranslatorGameResultsViewController.m */; };
 		5389169D18427090009D3AE2 /* ShowWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5389169C18427090009D3AE2 /* ShowWordViewController.m */; };
-		538916A018427B66009D3AE2 /* RevisionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5389169F18427B66009D3AE2 /* RevisionViewController.m */; };
+		538916A018427B66009D3AE2 /* TranslatorGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5389169F18427B66009D3AE2 /* TranslatorGameViewController.m */; };
+		539DA5431846536800F73BDF /* hangman.png in Resources */ = {isa = PBXBuildFile; fileRef = 539DA5411846536800F73BDF /* hangman.png */; };
+		539DA5441846536800F73BDF /* hangman@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 539DA5421846536800F73BDF /* hangman@x2.png */; };
+		539DA5471846573F00F73BDF /* HangmanGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539DA5461846573F00F73BDF /* HangmanGameViewController.m */; };
 		53FFACCE184253B4002BFE7B /* WordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FFACCD184253B4002BFE7B /* WordViewController.m */; };
 		53FFACD11842568F002BFE7B /* WordViewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FFACD01842568F002BFE7B /* WordViewTableCell.m */; };
 		6BF5DE1F18304BB3003A614C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BF5DE1E18304BB3003A614C /* UIKit.framework */; };
@@ -39,12 +42,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		530706BC1844FE350077966C /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResultsViewController.h; path = Classes/ResultsViewController.h; sourceTree = "<group>"; };
-		530706BD1844FE350077966C /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResultsViewController.m; path = Classes/ResultsViewController.m; sourceTree = "<group>"; };
+		530706BC1844FE350077966C /* TranslatorGameResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TranslatorGameResultsViewController.h; path = Classes/TranslatorGameResultsViewController.h; sourceTree = "<group>"; };
+		530706BD1844FE350077966C /* TranslatorGameResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TranslatorGameResultsViewController.m; path = Classes/TranslatorGameResultsViewController.m; sourceTree = "<group>"; };
 		5389169B18427090009D3AE2 /* ShowWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWordViewController.h; sourceTree = "<group>"; };
 		5389169C18427090009D3AE2 /* ShowWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWordViewController.m; sourceTree = "<group>"; };
-		5389169E18427B66009D3AE2 /* RevisionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RevisionViewController.h; path = Classes/RevisionViewController.h; sourceTree = "<group>"; };
-		5389169F18427B66009D3AE2 /* RevisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RevisionViewController.m; path = Classes/RevisionViewController.m; sourceTree = "<group>"; };
+		5389169E18427B66009D3AE2 /* TranslatorGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TranslatorGameViewController.h; path = Classes/TranslatorGameViewController.h; sourceTree = "<group>"; };
+		5389169F18427B66009D3AE2 /* TranslatorGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TranslatorGameViewController.m; path = Classes/TranslatorGameViewController.m; sourceTree = "<group>"; };
+		539DA5411846536800F73BDF /* hangman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hangman.png; sourceTree = "<group>"; };
+		539DA5421846536800F73BDF /* hangman@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hangman@x2.png"; sourceTree = "<group>"; };
+		539DA5451846573F00F73BDF /* HangmanGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HangmanGameViewController.h; path = Classes/HangmanGameViewController.h; sourceTree = "<group>"; };
+		539DA5461846573F00F73BDF /* HangmanGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HangmanGameViewController.m; path = Classes/HangmanGameViewController.m; sourceTree = "<group>"; };
 		53FFACCC184253B4002BFE7B /* WordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WordViewController.h; path = Classes/WordViewController.h; sourceTree = "<group>"; };
 		53FFACCD184253B4002BFE7B /* WordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WordViewController.m; path = Classes/WordViewController.m; sourceTree = "<group>"; };
 		53FFACCF1842568F002BFE7B /* WordViewTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WordViewTableCell.h; path = Classes/WordViewTableCell.h; sourceTree = "<group>"; };
@@ -177,10 +184,12 @@
 				53FFACCD184253B4002BFE7B /* WordViewController.m */,
 				5389169B18427090009D3AE2 /* ShowWordViewController.h */,
 				5389169C18427090009D3AE2 /* ShowWordViewController.m */,
-				5389169E18427B66009D3AE2 /* RevisionViewController.h */,
-				5389169F18427B66009D3AE2 /* RevisionViewController.m */,
-				530706BC1844FE350077966C /* ResultsViewController.h */,
-				530706BD1844FE350077966C /* ResultsViewController.m */,
+				5389169E18427B66009D3AE2 /* TranslatorGameViewController.h */,
+				5389169F18427B66009D3AE2 /* TranslatorGameViewController.m */,
+				530706BC1844FE350077966C /* TranslatorGameResultsViewController.h */,
+				530706BD1844FE350077966C /* TranslatorGameResultsViewController.m */,
+				539DA5451846573F00F73BDF /* HangmanGameViewController.h */,
+				539DA5461846573F00F73BDF /* HangmanGameViewController.m */,
 				6BF5DE5818306264003A614C /* DataAccess */,
 				6BF5DE6318318231003A614C /* WordTableCell.h */,
 				6BF5DE6418318231003A614C /* WordTableCell.m */,
@@ -206,6 +215,8 @@
 		6BFEA0351834B978009E9931 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				539DA5411846536800F73BDF /* hangman.png */,
+				539DA5421846536800F73BDF /* hangman@x2.png */,
 				6BFEA0361834B987009E9931 /* 977-checkbox.png */,
 				6BFEA0371834B987009E9931 /* 977-checkbox@2x.png */,
 				6BFEA03A1834CA83009E9931 /* 906-chat-3.png */,
@@ -277,6 +288,8 @@
 				6BF5DE56183060DB003A614C /* initialWords.plist in Resources */,
 				6BF5DE5F1830672A003A614C /* initalWords.txt in Resources */,
 				6BFA6D821835FF30005F33D2 /* Main.storyboard in Resources */,
+				539DA5431846536800F73BDF /* hangman.png in Resources */,
+				539DA5441846536800F73BDF /* hangman@x2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,8 +311,9 @@
 				53FFACCE184253B4002BFE7B /* WordViewController.m in Sources */,
 				53FFACD11842568F002BFE7B /* WordViewTableCell.m in Sources */,
 				5389169D18427090009D3AE2 /* ShowWordViewController.m in Sources */,
-				538916A018427B66009D3AE2 /* RevisionViewController.m in Sources */,
-				530706BE1844FE350077966C /* ResultsViewController.m in Sources */,
+				538916A018427B66009D3AE2 /* TranslatorGameViewController.m in Sources */,
+				530706BE1844FE350077966C /* TranslatorGameResultsViewController.m in Sources */,
+				539DA5471846573F00F73BDF /* HangmanGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

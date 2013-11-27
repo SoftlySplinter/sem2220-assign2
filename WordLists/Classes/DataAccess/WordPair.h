@@ -33,6 +33,7 @@ typedef enum {
 -(NSString *) language: (WLLanguageSetting) language;
 -(NSString *) translation: (WLLanguageSetting) language;
 -(NSString *) languageWithContext: (WLLanguageSetting) language;
+-(NSString *) translationWithContext: (WLLanguageSetting) language;
 
 
 @end
