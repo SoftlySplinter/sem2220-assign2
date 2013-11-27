@@ -72,13 +72,14 @@
 }
 
 - (IBAction)onButton:(id)sender {
-    if([self.guessLetterInput.text length] != 1) {
+    NSString *guess = [self.guessLetterInput.text lowercaseString];
+    if([guess length] != 1) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Entry" message:@"Input one letter" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil];
         [alert show];
         return;
     }
-    if ([self inWord: self.guessLetterInput.text]) {
-        [self addCharacter: self.guessLetterInput.text];
+    if ([self inWord: guess]) {
+        [self addCharacter: guess];
         if([self wordComplete]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You Win" message:@"You Guessed the Word Correctly" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil];
             [alert show];
@@ -98,7 +99,7 @@
 }
 
 - (BOOL) inWord: (NSString *) word {
-    NSString *answer = [self.guessWord language:self.language];
+    NSString *answer = [[self.guessWord language:self.language] lowercaseString];
     for(NSInteger i = 0; i < [answer length]; i++) {
         if([answer characterAtIndex:i] == [word characterAtIndex:0]) {
             return YES;
@@ -108,21 +109,28 @@
 }
 
 -(void) addCharacter: (NSString *) charString {
-    NSString *answer = [self.guessWord language:self.language];
+    NSString *answer = [[self.guessWord language:self.language] lowercaseString];
     for(NSInteger i = 0; i < [answer length]; i++) {
-        if([answer characterAtIndex:i] == [charString characterAtIndex:i]) {
+        if([answer characterAtIndex:i] == [charString characterAtIndex:0]) {
             NSRange range;
             range.length = 1;
-            range.location = i * 2 - 1;
-            self.guessWordField.text = [self.guessWordField.text stringByReplacingCharactersInRange:range withString:charString];
+            range.location = i * 2 + 1;
+            NSString *new = [self.guessWordField.text stringByReplacingCharactersInRange:range withString:charString];
+            self.guessWordField.text = new;
         }
     }
 }
 
 -(BOOL) wordComplete {
-    NSString *answer = [self.guessWord language:self.language];
-    NSString *progress = [self.guessWordField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    return [answer isEqualToString:progress];
+    NSString *answer = [[self.guessWord language:self.language] lowercaseString];
+    NSString *progress = [self.guessWordField.text lowercaseString];
+    for(NSInteger i = 0; i < [answer length]; i++) {
+        if([answer characterAtIndex:i] != [progress characterAtIndex:i*2 + 1]) {
+            return NO;
+        }
+    }
+    return YES;
+
 }
 
 @end
