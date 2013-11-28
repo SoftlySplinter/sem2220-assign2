@@ -12,7 +12,7 @@
 
 #define CHANCES 5
 
-@interface HangmanGameViewController() <UITextFieldDelegate>
+@interface HangmanGameViewController() <UITextFieldDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *hangmanView;
 @property (weak, nonatomic) IBOutlet UILabel *guessWordField;
 @property (weak, nonatomic) IBOutlet UILabel *hintWordField;
@@ -29,29 +29,25 @@
 
 @implementation HangmanGameViewController
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        NSMutableArray *imgs = [[NSMutableArray alloc] init];
-        
-        for(NSInteger i = 0; i < CHANCES; i++) {
-            imgs[i] = Nil;
-        }
-        
-        self.images = imgs;
-    }
-    return self;
-}
 
 -(void) viewDidLoad {
+    [super viewDidLoad];
+    NSMutableArray *imgs = [[NSMutableArray alloc] init];
+    
+    for(NSInteger i = 0; i < CHANCES; i++) {
+        UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"hangman-progress-%d.png", i]];
+        NSLog(@"Image: %@", img);
+        [imgs addObject:img];
+    }
+    
+    self.images = imgs;
     [self reset];
 }
 
 -(void) reset {
     [self.guessLetterInput resignFirstResponder];
     [self dismissViewControllerAnimated:true completion:nil];
-    self.count = 0;
+    self.count = 1;
     [self setHangman: self.count];
     [self loadWord];
 }
@@ -70,7 +66,8 @@
 }
 
 -(void) setHangman: (NSInteger) index {
-    [self.hangmanView setImage:self.images[index]];
+    [self.hangmanView setImage:self.images[index - 1]];
+    [self.hangmanView setNeedsDisplay];
 }
 
 - (IBAction)onButton:(id)sender {
@@ -83,19 +80,16 @@
     if ([self inWord: guess]) {
         [self addCharacter: guess];
         if([self wordComplete]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You Win" message:@"You Guessed the Word Correctly" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You Win" message:@"You Guessed the Word Correctly" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil];
             [alert show];
-            [self reset];
         }
     } else {
         self.count++;
-        if(self.count > CHANCES) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You Lose" message:[NSString stringWithFormat:@"The word was: %@", [self.guessWord language:self.language context:NO]] delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil];
+        [self setHangman:self.count];
+        if(self.count >= CHANCES) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You Lose" message:[NSString stringWithFormat:@"The word was: %@", [self.guessWord language:self.language context:NO]] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil];
             [alert show];
-            [self reset];
-        } else {
-            [self setHangman:self.count];
-        }
+        } 
     }
     [self.guessLetterInput setText:Nil];
 }
@@ -144,6 +138,10 @@
         [self dismissViewControllerAnimated:true completion:nil];
     }
     return YES;
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    [self reset];
 }
 
 @end

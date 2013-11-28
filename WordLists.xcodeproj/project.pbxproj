@@ -13,6 +13,11 @@
 		539DA5431846536800F73BDF /* hangman.png in Resources */ = {isa = PBXBuildFile; fileRef = 539DA5411846536800F73BDF /* hangman.png */; };
 		539DA5441846536800F73BDF /* hangman@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 539DA5421846536800F73BDF /* hangman@x2.png */; };
 		539DA5471846573F00F73BDF /* HangmanGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539DA5461846573F00F73BDF /* HangmanGameViewController.m */; };
+		539DA54D18474A3E00F73BDF /* hangman-progress-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 539DA54818474A3D00F73BDF /* hangman-progress-0.png */; };
+		539DA54E18474A3E00F73BDF /* hangman-progress-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 539DA54918474A3D00F73BDF /* hangman-progress-1.png */; };
+		539DA54F18474A3E00F73BDF /* hangman-progress-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 539DA54A18474A3D00F73BDF /* hangman-progress-2.png */; };
+		539DA55018474A3E00F73BDF /* hangman-progress-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 539DA54B18474A3E00F73BDF /* hangman-progress-3.png */; };
+		539DA55118474A3E00F73BDF /* hangman-progress-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 539DA54C18474A3E00F73BDF /* hangman-progress-4.png */; };
 		53FFACCE184253B4002BFE7B /* WordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FFACCD184253B4002BFE7B /* WordViewController.m */; };
 		53FFACD11842568F002BFE7B /* WordViewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FFACD01842568F002BFE7B /* WordViewTableCell.m */; };
 		6BF5DE1F18304BB3003A614C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BF5DE1E18304BB3003A614C /* UIKit.framework */; };
@@ -52,6 +57,11 @@
 		539DA5421846536800F73BDF /* hangman@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hangman@x2.png"; sourceTree = "<group>"; };
 		539DA5451846573F00F73BDF /* HangmanGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HangmanGameViewController.h; path = Classes/HangmanGameViewController.h; sourceTree = "<group>"; };
 		539DA5461846573F00F73BDF /* HangmanGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HangmanGameViewController.m; path = Classes/HangmanGameViewController.m; sourceTree = "<group>"; };
+		539DA54818474A3D00F73BDF /* hangman-progress-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hangman-progress-0.png"; sourceTree = "<group>"; };
+		539DA54918474A3D00F73BDF /* hangman-progress-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hangman-progress-1.png"; sourceTree = "<group>"; };
+		539DA54A18474A3D00F73BDF /* hangman-progress-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hangman-progress-2.png"; sourceTree = "<group>"; };
+		539DA54B18474A3E00F73BDF /* hangman-progress-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hangman-progress-3.png"; sourceTree = "<group>"; };
+		539DA54C18474A3E00F73BDF /* hangman-progress-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hangman-progress-4.png"; sourceTree = "<group>"; };
 		53FFACCC184253B4002BFE7B /* WordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WordViewController.h; path = Classes/WordViewController.h; sourceTree = "<group>"; };
 		53FFACCD184253B4002BFE7B /* WordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WordViewController.m; path = Classes/WordViewController.m; sourceTree = "<group>"; };
 		53FFACCF1842568F002BFE7B /* WordViewTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WordViewTableCell.h; path = Classes/WordViewTableCell.h; sourceTree = "<group>"; };
@@ -215,6 +225,11 @@
 		6BFEA0351834B978009E9931 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				539DA54818474A3D00F73BDF /* hangman-progress-0.png */,
+				539DA54918474A3D00F73BDF /* hangman-progress-1.png */,
+				539DA54A18474A3D00F73BDF /* hangman-progress-2.png */,
+				539DA54B18474A3E00F73BDF /* hangman-progress-3.png */,
+				539DA54C18474A3E00F73BDF /* hangman-progress-4.png */,
 				539DA5411846536800F73BDF /* hangman.png */,
 				539DA5421846536800F73BDF /* hangman@x2.png */,
 				6BFEA0361834B987009E9931 /* 977-checkbox.png */,
@@ -290,6 +305,11 @@
 				6BFA6D821835FF30005F33D2 /* Main.storyboard in Resources */,
 				539DA5431846536800F73BDF /* hangman.png in Resources */,
 				539DA5441846536800F73BDF /* hangman@x2.png in Resources */,
+				539DA54D18474A3E00F73BDF /* hangman-progress-0.png in Resources */,
+				539DA54E18474A3E00F73BDF /* hangman-progress-1.png in Resources */,
+				539DA54F18474A3E00F73BDF /* hangman-progress-2.png in Resources */,
+				539DA55018474A3E00F73BDF /* hangman-progress-3.png in Resources */,
+				539DA55118474A3E00F73BDF /* hangman-progress-4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
