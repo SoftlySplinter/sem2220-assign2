@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Aberystwyth University. All rights reserved.
 //
 
-#import "RevisionViewController.h"
+#import "TranslatorGameViewController.h"
 #import "SharedData.h"
-#import "ResultsViewController.h"
+#import "TranslatorGameResultsViewController.h"
 
 #define QUESTIONS 10
 #define ATTEMPTS 2
 #define CHOICES 4
 
-@interface RevisionViewController()
+@interface TranslatorGameViewController()
 @property (weak, nonatomic) IBOutlet UIPickerView *answerSelection;
 @property (weak, nonatomic) IBOutlet UIButton *confirmButton;
 @property (weak, nonatomic) IBOutlet UIButton *finalConfirmButton;
@@ -31,13 +31,14 @@
 
 @end
 
-@implementation RevisionViewController
+@implementation TranslatorGameViewController
 
 -(void) viewDidLoad {
     self.choices = [[NSMutableArray alloc] initWithCapacity:CHOICES];
+    [self reset];
 }
 
--(void) viewDidAppear:(BOOL)animated {
+-(void) reset {
     self.questionNumber = 0;
     self.correct = 0;
     self.shouldSegue = NO;
@@ -94,17 +95,9 @@
 -(void) generateQuestion {
     [self.choices removeAllObjects];
     
-    WLLanguageSetting languages[2] = {WLLanguageSettingEnglish, WLLanguageSettingWelsh};
-    
-    self.lang = languages[random() % 2];
-    
-    NSInteger noWords = [[SharedData defaultInstance] numberOfWordsForLanguage:self.lang];
-    
-    
+    self.lang = [SharedData randomLanguage];
     while([self.choices count] < CHOICES) {
-        NSInteger answerIndex = random() % noWords;
-        WordLink *answerWord = [[SharedData defaultInstance] wordPairForIndexPosition:answerIndex language:self.lang];
-        WordPair *answerPair = [self selectAnswerFromLink: answerWord];
+        WordPair *answerPair = [[SharedData defaultInstance] randomWordPair:self.lang];
         
         if([self.choices containsObject:answerPair]) {
             continue;
@@ -112,17 +105,11 @@
         [self.choices addObject:answerPair];
     }
     
-    self.answer = random() % [self.choices count];
+    self.answer = arc4random() % [self.choices count];
     WordPair *answerPair = self.choices[self.answer];
-    self.anserLabel.text = [answerPair languageWithContext: self.lang];
+    self.anserLabel.text = [answerPair language: self.lang context:YES];
     
     [self.answerSelection reloadAllComponents];
-}
-
--(WordPair *) selectAnswerFromLink: (WordLink *) link {
-    NSInteger length = [link.wordPairs count];
-    NSInteger i = random() % length;
-    return [link.wordPairs objectAtIndex:i];
 }
 
 -(NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -136,7 +123,7 @@
 -(NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     WordPair *pair = self.choices[row];
     
-    return [NSString stringWithFormat:@"%@", [pair translation: self.lang]];
+    return [NSString stringWithFormat:@"%@", [pair translation: self.lang context:YES]];
 }
 
 -(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
@@ -144,8 +131,9 @@
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    ResultsViewController *results = segue.destinationViewController;
+    TranslatorGameResultsViewController *results = segue.destinationViewController;
     results.score = self.correct;
+    [self reset];
 }
 
 -(BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {

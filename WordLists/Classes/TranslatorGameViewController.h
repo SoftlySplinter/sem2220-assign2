@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RevisionViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>
+@interface TranslatorGameViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>
 
+-(void) reset;
 @end

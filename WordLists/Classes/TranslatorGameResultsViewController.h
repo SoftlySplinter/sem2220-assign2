@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ResultsViewController : UIViewController
+@interface TranslatorGameResultsViewController : UIViewController
 @property NSInteger score;
 @end

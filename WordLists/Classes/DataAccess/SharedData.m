@@ -377,4 +377,24 @@
     return wordLink;
 }
 
++(WLLanguageSetting) randomLanguage {
+    WLLanguageSetting languages[2] = {WLLanguageSettingEnglish, WLLanguageSettingWelsh};
+    return languages[arc4random() % 2];
+}
+
+-(WordPair *) randomWordPair: (WLLanguageSetting) language {
+    NSInteger noWords = [[SharedData defaultInstance] numberOfWordsForLanguage: language];
+    NSInteger answerIndex = arc4random() % noWords;
+    WordLink *answerWord = [[SharedData defaultInstance] wordPairForIndexPosition:answerIndex language: language];
+    return [self selectAnswerFromLink: answerWord];
+}
+
+
+
+-(WordPair *) selectAnswerFromLink: (WordLink *) link {
+    NSInteger length = [link.wordPairs count];
+    NSInteger i = random() % length;
+    return [link.wordPairs objectAtIndex:i];
+}
+
 @end
