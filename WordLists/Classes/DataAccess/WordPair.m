@@ -84,7 +84,6 @@
 }
 
 -(BOOL) isEqual:(id)object {
-    NSLog(@"Is Equal called");
     WordPair *other = (WordPair *) object;
     return [self.english isEqual:other.english] && [self.welsh isEqual:other.welsh];
 }

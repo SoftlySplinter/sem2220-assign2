@@ -9,7 +9,7 @@
 #import "AddWordViewController.h"
 #import "WordPair.h"
 
-@interface AddWordViewController ()
+@interface AddWordViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *englishField;
 
@@ -39,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self hilightEmpty];
     
 }
 
@@ -72,12 +73,46 @@
     return content; 
 }
 
+-(void) hilightEmpty {
+    WordPair *pair = [self wordPair];
+    UIColor *red = [[UIColor alloc] initWithRed:1. green:0.8 blue:0.8 alpha:1.];
+    UIColor *def = [[UIColor alloc] initWithRed: 1. green: 1. blue: 1. alpha: 0.];
+    if([pair.english length] == 0) {
+        [self.englishField setBackgroundColor:red];
+    } else {
+        [self.englishField setBackgroundColor:def];
+    }
+    if([pair.welsh length] == 0) {
+        [self.welshField setBackgroundColor:red];
+    } else {
+        [self.welshField setBackgroundColor:def];
+    }
+}
+
+- (IBAction)doEnglish:(id)sender {
+    [self hilightEmpty];
+}
+
+- (IBAction)doWelsh:(id)sender {
+    [self hilightEmpty];
+}
+
 -(BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     if(sender == self.doneButton) {
         WordPair *pair = [self wordPair];
-        return ([pair.english length] != 0 ||
-                [pair.welsh length] != 0);
+        if([pair.english length] == 0 ||
+           [pair.welsh length] == 0) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Empty Fields" message:@"Cannot add words, there are empty felds" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            [self hilightEmpty];
+            return NO;
+        }
     }
+    return YES;
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
     return YES;
 }
 

@@ -442,10 +442,18 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="doEnglish:" destination="06F-ml-kwK" eventType="editingDidEnd" id="Uuk-c4-Tlc"/>
+                                    <outlet property="delegate" destination="06F-ml-kwK" id="wH9-k6-YVT"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Welsh word or phrase" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-Md-d3J">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="doWelsh:" destination="06F-ml-kwK" eventType="editingDidEnd" id="1pt-IE-PBq"/>
+                                    <outlet property="delegate" destination="06F-ml-kwK" id="Xpz-EX-3Th"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Word Context" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KLL-Z9-2Tq">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -465,6 +473,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="06F-ml-kwK" id="cLo-WY-i59"/>
+                                </connections>
                             </textView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ia7-ck-M1r">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -729,6 +740,8 @@
         <class className="AddWordViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddWordViewController.h"/>
             <relationships>
+                <relationship kind="action" name="doEnglish:"/>
+                <relationship kind="action" name="doWelsh:"/>
                 <relationship kind="outlet" name="areaSelection" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="contextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
@@ -771,8 +784,6 @@
         <class className="TranslatorGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TranslatorGameViewController.h"/>
             <relationships>
-                <relationship kind="action" name="doConfirm:"/>
-                <relationship kind="action" name="doFinalConfirm:"/>
                 <relationship kind="outlet" name="anserLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="answerSelection" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="confirmButton" candidateClass="UIButton"/>
@@ -783,9 +794,6 @@
         <class className="WordListViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WordListViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cancelAdd:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="action" name="confirmAdd:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="action" name="languageChanged:"/>
                 <relationship kind="outlet" name="languageChoice" candidateClass="UISegmentedControl"/>
             </relationships>
         </class>

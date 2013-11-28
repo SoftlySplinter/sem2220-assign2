@@ -10,4 +10,5 @@
 
 @interface TranslatorGameViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>
 
+-(void) reset;
 @end

@@ -35,9 +35,10 @@
 
 -(void) viewDidLoad {
     self.choices = [[NSMutableArray alloc] initWithCapacity:CHOICES];
+    [self reset];
 }
 
--(void) viewDidAppear:(BOOL)animated {
+-(void) reset {
     self.questionNumber = 0;
     self.correct = 0;
     self.shouldSegue = NO;
@@ -104,7 +105,7 @@
         [self.choices addObject:answerPair];
     }
     
-    self.answer = random() % [self.choices count];
+    self.answer = arc4random() % [self.choices count];
     WordPair *answerPair = self.choices[self.answer];
     self.anserLabel.text = [answerPair languageWithContext: self.lang];
     
@@ -132,6 +133,7 @@
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     TranslatorGameResultsViewController *results = segue.destinationViewController;
     results.score = self.correct;
+    [self reset];
 }
 
 -(BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
