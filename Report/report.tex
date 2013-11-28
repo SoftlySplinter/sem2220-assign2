@@ -1,0 +1,174 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[section]{placeins}
+\usepackage{paralist}
+\usepackage{fullpage}
+\usepackage{glossaries}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\newacronym{DNS}{DNS}{Domain Name System}
+
+\newcommand*{\titleGM}{\begingroup
+\hbox{ 
+\hspace*{0.2\textwidth} 
+\rule{1pt}{\textheight} 
+\hspace*{0.05\textwidth} 
+\parbox[b]{0.75\textwidth}{ 
+
+{\noindent\Huge\bfseries iOS Welsh Vocabulary App}\\[2\baselineskip] % Title
+{\large \textit{SEM2220 Assignment 2}}\\[4\baselineskip] % Tagline or further description
+{\Large \textsc{Alexander D Brown (adb9)}} % Author name
+
+\vspace{0.5\textheight} 
+}}
+\endgroup}
+
+
+\begin{document}
+\titleGM 
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+This report shows the process undertaken to make the pre-existing iOS Welsh Vocabulary Application to meet the following features requests:
+
+\begin{enumerate}
+\item Adding fields to the word link.
+\item Updating the custom cell.
+\item Adding word link detail screen.
+\item Revision game.
+\end{enumerate}
+
+The existing application provides the basic functionality to display words from a SQLite database as well as the loading and saving of a single translation with no context, area or notes to the database.
+
+
+\section{Development}
+
+This section describes the process taken to implement the four feature requests required of the application, as well as detailing the problems encountered and how they were solved.
+
+Finally this section also discusses the extra features implemented to improve the user experience.
+
+\subsection{Implementation of Feature Requests}
+
+This section describes how each of the four feature requests were added to the existing application.
+
+\subsubsection{FR1: Adding Fields to the Word Link}
+
+The first task was to allow users to add the following extra details:
+
+\begin{itemize}
+\item Context
+\item Area
+\item Note
+\end{itemize}
+
+All these fields were added as properties of the WordPair object.
+
+The context is a simple, single line string, which, like the English and Welsh fields, could be added as a single text field in the UI and required altering the Word Link table to add a context column with type text.
+
+The area can be one of three items:
+
+\begin{itemize}
+\item North
+\item South
+\item Both
+\end{itemize}
+
+The iOS segment selector was the perfect tool for displaying this information in the UI (with the default of Both).
+
+An enumeration was created in code to store this information, with methods to translate from a String or character to the enumeration construct and vice versa.
+
+In the database this information was represented as text for simplicity, it could also have been represented as a character if optimisation was an issue.
+
+Additional methods in the \texttt{WordPair} class to translate numbers (which the segment control produces) to the enumeration type.
+
+Finally user notes were added as a text input field and were added to the database as a text field.
+
+
+\subsubsection{FR2: Update the Custom Table Cell}
+
+The next feature was to update the table cell to display Word Link information. I went with a very simple representation, only displaying the word and all its possible translations.
+
+\subsubsection{FR3: Add Word Link Detail Screen}
+
+The next requirement was to show the details of a word link on a next screen.
+
+To show this information a second table was design, showing each translation with the context of that translation.
+
+The user can then click on these cells to show the same information that was given to add words, using a screen laid out similarly to the add words screen.
+
+\subsubsection{FR4: Create Word Games}
+
+Two word games were implemented, one was a simple game to select the translation from a list which contained the correct translation.
+
+The other game is based on the popular game hangman, but gives the translated word as a clue (but trades this off with fewer guesses).
+
+\paragraph{Translation Word Game}\hfill
+
+The translation game requires users to pick the correct translation from four possible words. This process happens ten times and a score is shown at the end.
+
+Rather than load the ten words before the game starts, it seemed easier to select the four word pairs from the database and then randomly select the correct word to display. This does allow duplication of questions, but allows a database size of anything greater than four to be used.
+
+To display the four choices, a \texttt{UIPickerView} was implemented and the \texttt{TranslationGameViewController} was also made a delegate for this picker. To make this process easier, the correct position of the word in the array the picker uses is stored and then used to check if the choice is correct.
+
+Initially, the idea of seguing back to the same view was considered, but it was found that simply manipulating the view dynamically was much easier to deal with.
+
+To segue at the end of the game two different buttons are used. The first is visible through the entire game until the last question, at which point it becomes hidden and another, previously hidden, button is made visible to perform the segue to the results page.
+
+\paragraph{Hangman Game}\hfill
+
+The hangman game was marginally easier to implement, but did bring about some more radical changes to existing code.
+
+Previously, the translation game had handled the random selection of words but, with another class which needed to perform the exact same logic, this code was moved into the \texttt{SharedData} class. This keeps the concerns of loading data in a single place.
+
+It also affected the \texttt{WordPair} class to have better methods for providing words in different languages. Previously a few helper methods had been implemented to get a word from a certain language and the translation from a certain language, required because both games would only know the language the answer was in.
+
+This mean that guessing the Welsh word also involved guessing the context (including brackets and spaces). This was changed to pass in a boolean requesting the context.
+
+The images were displayed in a \texttt{UIImageView} and were loaded into an array when the view loads. A call to the methods to set the image for the view was then used with the index of the image to display which corresponded to the number of lives the user had left.
+
+\subsection{Problems Encountered}
+
+Some of the main problems encountered in this project were due to the lack of familiarisation with Objective C and the iOS framework. Sites like the iOS documentation and StackOverflow were used to gain knowledge of what should be done to solve a problem and how to debug common problems.
+
+One problem that was found was more of a C issue than an Objective C problem; circular dependencies.
+
+The initial code has the language setting enumeration in the \texttt{SharedData} class, which includes the \texttt{WordLink} header which, in turn, includes the \texttt{WordPair} header.
+
+Later in the project the language settings were needed in the \texttt{WordLink} class to provide extra functionality required for the feature requests. At this point the \texttt{WordLink} header also included the \texttt{SharedData} header. This made the enumeration inaccessible in the \texttt{WordLink} header despite the fact it would seem it should be.
+
+Initially a C style fix was employed using macros, but this was quickly remedied by moving the enumeration into the \texttt{WordLink} header, and later into the \texttt{WordPair} header for similar reasons.
+
+
+\section{Testing}
+
+This section describes the testing performed on the application, specifically using the iOS simulator.
+
+
+\section{Evaluation}
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}\hline
+\textbf{Part} & \textbf{Worth} & \textbf{Predicted Grade} \\ \hline
+Documentation & 30\% & 25\% \\ 
+Implementation & 50\% & 45\% \\ 
+Flair & 10\% & 5\% \\ 
+Testing & 10\% & 7\% \\ \hline
+Total & 100\% & 82\% \\ \hline
+\end{tabular}
+\caption{Break Down of Marks}\label{tab:marks}
+\end{table}
+
+\newpage
+
+\end{document}
