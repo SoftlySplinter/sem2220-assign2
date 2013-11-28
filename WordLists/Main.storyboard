@@ -257,6 +257,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Yt2-6u-my1" id="6Sk-X4-lf0"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGb-MQ-INk">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -776,9 +779,6 @@
                 <relationship kind="outlet" name="finalConfirmButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="progress" candidateClass="UIProgressView"/>
             </relationships>
-        </class>
-        <class className="UIStoryboardSegue" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
         </class>
         <class className="WordListViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WordListViewController.h"/>

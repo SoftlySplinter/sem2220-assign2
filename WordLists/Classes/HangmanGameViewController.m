@@ -12,7 +12,7 @@
 
 #define CHANCES 5
 
-@interface HangmanGameViewController()
+@interface HangmanGameViewController() <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *hangmanView;
 @property (weak, nonatomic) IBOutlet UILabel *guessWordField;
 @property (weak, nonatomic) IBOutlet UILabel *hintWordField;
@@ -49,6 +49,8 @@
 }
 
 -(void) reset {
+    [self.guessLetterInput resignFirstResponder];
+    [self dismissViewControllerAnimated:true completion:nil];
     self.count = 0;
     [self setHangman: self.count];
     [self loadWord];
@@ -131,6 +133,17 @@
     }
     return YES;
 
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField {
+    if([self.guessLetterInput.text length] == 1) {
+        [self onButton:textField];
+        return NO;
+    } else {
+        [self.guessLetterInput resignFirstResponder];
+        [self dismissViewControllerAnimated:true completion:nil];
+    }
+    return YES;
 }
 
 @end

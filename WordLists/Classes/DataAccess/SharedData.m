@@ -379,12 +379,12 @@
 
 +(WLLanguageSetting) randomLanguage {
     WLLanguageSetting languages[2] = {WLLanguageSettingEnglish, WLLanguageSettingWelsh};
-    return languages[random() % 2];
+    return languages[arc4random() % 2];
 }
 
 -(WordPair *) randomWordPair: (WLLanguageSetting) language {
     NSInteger noWords = [[SharedData defaultInstance] numberOfWordsForLanguage: language];
-    NSInteger answerIndex = random() % noWords;
+    NSInteger answerIndex = arc4random() % noWords;
     WordLink *answerWord = [[SharedData defaultInstance] wordPairForIndexPosition:answerIndex language: language];
     return [self selectAnswerFromLink: answerWord];
 }
