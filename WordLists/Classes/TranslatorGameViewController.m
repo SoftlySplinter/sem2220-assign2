@@ -107,7 +107,7 @@
     
     self.answer = arc4random() % [self.choices count];
     WordPair *answerPair = self.choices[self.answer];
-    self.anserLabel.text = [answerPair languageWithContext: self.lang];
+    self.anserLabel.text = [answerPair language: self.lang context:YES];
     
     [self.answerSelection reloadAllComponents];
 }
@@ -123,7 +123,7 @@
 -(NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     WordPair *pair = self.choices[row];
     
-    return [NSString stringWithFormat:@"%@", [pair translation: self.lang]];
+    return [NSString stringWithFormat:@"%@", [pair translation: self.lang context:YES]];
 }
 
 -(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {

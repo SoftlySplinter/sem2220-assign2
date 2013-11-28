@@ -51,36 +51,23 @@
     }
 }
 
--(NSString *) language:(WLLanguageSetting)language {
-    if(language == WLLanguageSettingEnglish) {
-        return self.english;
-    } else {
-        return self.welsh;
+
+
+-(NSString *) language: (WLLanguageSetting) language context:(BOOL)context {
+    switch (language) {
+        case WLLanguageSettingEnglish:
+            return self.english;
+        case WLLanguageSettingWelsh:
+            if([self.context length] > 0 && context) {
+                return [NSString stringWithFormat:@"%@ (%@)", self.welsh, self.context];
+            } else {
+                return self.welsh;
+            }
     }
 }
 
--(NSString *) translation:(WLLanguageSetting)language {
-    if(language == WLLanguageSettingEnglish) {
-        return self.welsh;
-    } else {
-        return self.english;
-    }
-}
-
--(NSString *) languageWithContext: (WLLanguageSetting) language {
-    if([self.context length] < 1) {
-        return [self language: language];
-    } else {
-        return [NSString stringWithFormat:@"%@ (%@)", [self language:language], self.context];
-    }
-}
-
--(NSString *) translationWithContext: (WLLanguageSetting) language {
-    if([self.context length] < 1) {
-        return [self translation: language];
-    } else {
-        return [NSString stringWithFormat:@"%@ (%@)", [self translation:language], self.context];
-    }
+-(NSString *) translation: (WLLanguageSetting) language context:(BOOL)context {
+    return [self language:(language == WLLanguageSettingWelsh) ? WLLanguageSettingEnglish : WLLanguageSettingWelsh context:context];
 }
 
 -(BOOL) isEqual:(id)object {
