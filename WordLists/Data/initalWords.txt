@@ -3,3 +3,5 @@ two|dau
 three|tri
 four|pedwar
 five|pump
+school|ysgol||B|education
+ladder|ysgol||B|climbing

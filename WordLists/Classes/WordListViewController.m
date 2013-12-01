@@ -10,6 +10,8 @@
 #import "SharedData.h"
 #import "AddWordViewController.h"
 #import "WordTableCell.h"
+#import "WordPair.h"
+#import "WordViewController.h"
 
 @interface WordListViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *languageChoice;
@@ -56,7 +58,7 @@
     
     NSLog(@"WordPair: %@", wordPair);
     
-    [[SharedData defaultInstance] addWordsWithEnglish: wordPair.english welsh: wordPair.welsh];
+    [[SharedData defaultInstance] addWordsWithEnglish: wordPair.english welsh: wordPair.welsh context: wordPair.context area: wordPair.area notes: wordPair.notes];
     
     [self.tableView reloadData];
 }
@@ -111,6 +113,15 @@
 - (IBAction)languageChanged:(id)sender {
 
     [self.tableView reloadData];
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString: @"selectWordSegue"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        WordViewController *wordVC = segue.destinationViewController;
+        wordVC.wordLink = [[SharedData defaultInstance] wordPairForIndexPosition:indexPath.row language:[self currentLanguageSetting]];
+        wordVC.language = [self currentLanguageSetting];
+    }
 }
 
 @end

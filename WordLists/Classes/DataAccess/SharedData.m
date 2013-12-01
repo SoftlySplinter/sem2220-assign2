@@ -107,7 +107,21 @@
     for(NSString *line in lines) {
         NSArray *elements = [line componentsSeparatedByString: @"|"];
         NSLog(@"elements: %@", elements);
-        [self addWordsWithEnglish: elements[0] welsh: elements[1]];
+        NSString *notes = Nil;
+        WLArea area = WLAreaBoth;
+        NSString *context = Nil;
+        switch ([elements count]) {
+            case 5:
+                context = elements[4];
+                // Fallthrough intended
+            case 4:
+                area = [WordPair areaFromString: elements[3]];
+                // Fallthrough intended
+            case 3:
+                notes = elements[2];
+        }
+        
+        [self addWordsWithEnglish: elements[0] welsh: elements[1] context: context area: area notes: notes];
     }
 }
 
@@ -164,7 +178,7 @@
     }
     
     NSString *tableName = [self tableNameForLanguage: language];
-    NSString *query = [NSString stringWithFormat: @"INSERT INTO %@ (wordPhrase) values (?)", tableName];
+    NSString *query = [NSString stringWithFormat: @"INSERT INTO %@ (wordPhrase) VALUES (?)", tableName];
     return [self insertWordWithQuery: query wordPhrase: wordPhrase];
 }
 
@@ -192,15 +206,38 @@
 }
 
 - (void) insertLinkWithEnglishId: (NSInteger) englishId
-                         welshId: (NSInteger) welshId {
+                         welshId: (NSInteger) welshId
+                         context: (NSString *) context
+                            area: (WLArea) area
+                           notes: (NSString *) notes {
+    if(context == Nil) context = @"";
+    if(notes == Nil) notes = @"";
     
-    NSString *queryString = [NSString stringWithFormat: @"INSERT INTO wordLink (englishId, welshId) VALUES (%d, %d)", englishId, welshId];
+    NSString *areaText = [WordPair areaToString:area];
+    NSString *queryString = [NSString stringWithFormat:
+                             @"INSERT INTO wordLink (englishId, welshId, context, area, notes) \
+                             VALUES (%d, %d, ?, '%c', ?)",
+                             englishId, welshId,
+                             (areaText == Nil) ? ' ' : [areaText characterAtIndex:0]];
     
     sqlite3_stmt *statement;
+    
+    
     if(sqlite3_prepare_v2(db, [queryString UTF8String], -1, &statement, NULL)
        != SQLITE_OK)
     {
         NSLog(@"error creating the query to insert link.");
+    }
+    
+    if(sqlite3_bind_text(statement, 1, [context UTF8String],
+                         -1, SQLITE_TRANSIENT) != SQLITE_OK) {
+        NSLog(@"DB Error %s", sqlite3_errmsg(db));
+        NSLog(@"error binding context to the query to insert link.");
+    }
+    
+    if(sqlite3_bind_text(statement, 2, [notes UTF8String],
+                         -1, SQLITE_TRANSIENT) != SQLITE_OK) {
+        NSLog(@"error binding notes to the query to insert link.");
     }
     
     if (sqlite3_step(statement) != SQLITE_DONE)
@@ -212,14 +249,17 @@
 }
 
 - (void) addWordsWithEnglish: (NSString *) english
-                       welsh: (NSString *) welsh {
+                       welsh: (NSString *) welsh
+                     context: (NSString *) context
+                        area:(WLArea) area
+                       notes: (NSString *) notes {
     
     NSInteger englishId = [self insertWordPhrase: english forLanguage: WLLanguageSettingEnglish];
     NSInteger welshId = [self insertWordPhrase: welsh forLanguage: WLLanguageSettingWelsh];
     
-    NSLog(@"%d,%d", englishId, welshId);
+    NSLog(@"%d,%d (c: %@ a: %@ n: %@)", englishId, welshId, context, [WordPair areaToString:area], notes);
     
-    [self insertLinkWithEnglishId: englishId welshId: welshId];
+    [self insertLinkWithEnglishId: englishId welshId: welshId context: context area: area notes: notes];
     
 }
 
@@ -259,7 +299,10 @@
     NSString *tableId = [self tableIdNameForLanguage: language];
     
     NSString *queryString =
-    [NSString stringWithFormat: @"SELECT %@ FROM %@ ORDER BY wordPhrase LIMIT 1 OFFSET %d;", tableId, tableName, index];
+    [NSString stringWithFormat: @"SELECT %@ FROM %@ \
+     ORDER BY wordPhrase \
+     LIMIT 1 \
+     OFFSET %d;", tableId, tableName, index];
     
     sqlite3_stmt *statement;
     if(sqlite3_prepare_v2(db, [queryString UTF8String], -1, &statement, NULL)
@@ -286,9 +329,12 @@
     NSString *tableId = [self tableIdNameForLanguage: language];
     
     NSString *queryString =
-    [NSString stringWithFormat: @"SELECT e.wordPhrase, w.wordPhrase FROM english as e, welsh as w, wordLink as wl where wl.englishId = e.englishId and wl.welshId = w.welshId and wl.%@ = %d;",
-     tableId, wordId
-     ];
+    [NSString stringWithFormat: @"SELECT e.wordPhrase, w.wordPhrase, wl.context, wl.area, wl.notes \
+     FROM english as e, welsh as w, wordLink as wl \
+     WHERE wl.englishId = e.englishId AND wl.welshId = w.welshId AND wl.%@ = %d \
+     ORDER BY %@.wordPhrase;",
+     tableId, wordId,
+     (language == WLLanguageSettingEnglish) ? @"e" : @"w"];
     
     sqlite3_stmt *statement;
     if(sqlite3_prepare_v2(db, [queryString UTF8String], -1, &statement, NULL)
@@ -300,24 +346,55 @@
     
     WordLink *wordLink = [[WordLink alloc] init];
     
-    NSInteger mainWordPhraseIndex = 0;
-    NSInteger secondWordPhraseIndex = 1;
-    if(language == WLLanguageSettingWelsh) {
-        mainWordPhraseIndex = 1;
-        secondWordPhraseIndex = 0;
-    }
-    
     while (sqlite3_step(statement) == SQLITE_ROW)
     {
-        char *itemChar = (char *) sqlite3_column_text(statement, mainWordPhraseIndex);
-        wordLink.wordPhrase = [[NSString alloc] initWithUTF8String: itemChar];
+        WordPair * wordPair = [[WordPair alloc] init];
+        char *itemChar = (char *) sqlite3_column_text(statement, 0);
+        wordPair.english = [[NSString alloc] initWithUTF8String: itemChar];
         
-        itemChar = (char *) sqlite3_column_text(statement, secondWordPhraseIndex);
-        [wordLink.wordPhraseItems addObject: [[NSString alloc] initWithUTF8String: itemChar]];
+        itemChar = (char *) sqlite3_column_text(statement, 1);
+        wordPair.welsh = [[NSString alloc] initWithUTF8String:itemChar];
+        
+        itemChar = (char *) sqlite3_column_text(statement, 2);
+        if(itemChar != Nil) {
+            wordPair.context = [[NSString alloc] initWithUTF8String:itemChar];
+        }
+        
+        itemChar = (char *) sqlite3_column_text(statement, 3);
+        if(itemChar != Nil) {
+            wordPair.area = [WordPair areaFromString:[[NSString alloc] initWithUTF8String:itemChar]];
+        }
+        
+        itemChar = (char *) sqlite3_column_text(statement, 4);
+        if(itemChar != Nil) {
+            wordPair.notes = [[NSString alloc] initWithUTF8String:itemChar];
+        }
+        
+        [wordLink addWordPair: wordPair withLanguage: language];
    }
     sqlite3_finalize(statement);
     
     return wordLink;
+}
+
++(WLLanguageSetting) randomLanguage {
+    WLLanguageSetting languages[2] = {WLLanguageSettingEnglish, WLLanguageSettingWelsh};
+    return languages[arc4random() % 2];
+}
+
+-(WordPair *) randomWordPair: (WLLanguageSetting) language {
+    NSInteger noWords = [[SharedData defaultInstance] numberOfWordsForLanguage: language];
+    NSInteger answerIndex = arc4random() % noWords;
+    WordLink *answerWord = [[SharedData defaultInstance] wordPairForIndexPosition:answerIndex language: language];
+    return [self selectAnswerFromLink: answerWord];
+}
+
+
+
+-(WordPair *) selectAnswerFromLink: (WordLink *) link {
+    NSInteger length = [link.wordPairs count];
+    NSInteger i = random() % length;
+    return [link.wordPairs objectAtIndex:i];
 }
 
 @end

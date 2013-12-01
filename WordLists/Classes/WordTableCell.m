@@ -12,7 +12,6 @@
 @interface WordTableCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *word;
-@property (weak, nonatomic) IBOutlet UILabel *note;
 @property (weak, nonatomic) IBOutlet UILabel *wordList;
 
 @end

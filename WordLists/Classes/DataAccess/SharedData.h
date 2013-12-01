@@ -10,11 +10,6 @@
 #import "WordPair.h"
 #import "WordLink.h"
 
-typedef enum {
-    WLLanguageSettingEnglish,
-    WLLanguageSettingWelsh
-} WLLanguageSetting;
-
 @interface SharedData : NSObject
 
 + (id) defaultInstance;
@@ -23,11 +18,16 @@ typedef enum {
 - (void) initialiseWithDataFromFile: (NSString *) filename;
 
 - (void) addWordsWithEnglish: (NSString *) english
-                       welsh: (NSString *) welsh;
+                       welsh: (NSString *) welsh
+                     context: (NSString *) context
+                        area:(WLArea) area
+                       notes: (NSString *) notes;
 
 - (NSInteger) numberOfWordsForLanguage: (WLLanguageSetting) language;
 
 - (WordLink *) wordPairForIndexPosition: (NSInteger) index language: (WLLanguageSetting) language;
 
++ (WLLanguageSetting) randomLanguage;
+- (WordPair *) randomWordPair: (WLLanguageSetting) language;
 
 @end
