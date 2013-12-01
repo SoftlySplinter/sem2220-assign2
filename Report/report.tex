@@ -13,8 +13,6 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
-\newacronym{DNS}{DNS}{Domain Name System}
-
 \newcommand*{\titleGM}{\begingroup
 \hbox{ 
 \hspace*{0.2\textwidth} 
@@ -152,9 +150,109 @@ Initially a C style fix was employed using macros, but this was quickly remedied
 
 This section describes the testing performed on the application, specifically using the iOS simulator.
 
+Figure~\ref{fig:add-words} shows the screen the user would use to add new words to the database and also how their input is checked to make sure the English or Welsh field is not blank.
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{img/add-word-init}
+\caption{Initial Add Words Screen}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{img/add-word-error}
+\caption{Error Checking}
+\end{subfigure}
+\caption{Allowing the User to Add Words}
+\label{fig:add-words}
+\end{figure}
+
+Figure~\ref{fig:display-words} shows the screens which display existing words to the user. As most of this functionality is produced directly from database queries and using the storyboard elements, there is very little testing that can actually be performed on it, other than checking the correct words are loaded.
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{img/words-list}
+\caption{The Words List Screen}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{img/word-link}
+\caption{The Word Link Screen}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{img/word-detail}
+\caption{The Word Detail Screen}
+\end{subfigure}
+\caption{Displaying Words to the User}
+\label{fig:display-words}
+\end{figure}
+
+Figure~\ref{fig:trans-game} shows the Translation game in progress. Again this is mostly handled by database interaction and storyboard elements. To test a number of questions were answered correctly to ensure the scoring worked as expected.
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{img/trans-game}
+\caption{Presenting the Question}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{img/trans-game-error}
+\caption{Getting an Answer Wrong}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{img/trans-game-results}
+\caption{Results}
+\end{subfigure}
+\caption{The Translation Game at Different Points in the Game}
+\label{fig:trans-game}
+\end{figure}
+
+Figure~\ref{fig:hangman-game} shows the Hangman game in progress. As with the Translation game the only real way to test this was to play the game several times making a mixture of correct and incorrect decisions.
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{img/hangman}
+\caption{Presenting the Question}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{img/hangman-prog}
+\caption{In Progress}
+\end{subfigure}
+\\
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{img/hangman-win}
+\caption{Winning the Game}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]{img/hangman-lose}
+\caption{Losing the Game}
+\end{subfigure}
+\caption{The Hangman Game at Different Points in the Game}
+\label{fig:hangman-game}
+\end{figure}
 
 \section{Evaluation}
 
+All of the feature request have been implemented and evidenced as per the figures show in the previous section. The code is of somewhat decent quality; due to a lack of familiarity of Objective-C it is, perhaps, not as slick as it could be. As well as this, a lot of the code has been put into the View Controller classes when it could have been isolated into separate classes.
+
+Where possible code was refactored out of the view controllers and into the data access classes when the functionality was either repeated or long winded.
+
+The author has learnt a lot about the process taken to develop iOS applications, as well as the API for many of the objects used in both iOS applications and the standard Objective-C libraries. Aside from this, the author has tried to take the time to learn some of the standards for developing iOS applications, one notable part of this was to use the \texttt{arc4random} random number generator rather than the standard \texttt{random} random number generator as it actually begins to provide true randomness without the need for providing a decent method of seeding the generator.
+
+Much of the development took the same process any other project would have, slowly developing and testing each feature, using the documentation where needed. The documentation provided by Apple in XCode was generally enough to find out the use of any User Interface object which were needed and where this was not enough, online help sites generally had a related query which could be adapted to suit the needs of the project.
+
+The author does feel that iOS development relies too heavily on XCode, especially when basic tasks like editing the XML descriptor of the user interface is actively discouraged. Objective-C does seem like a powerful language with lots of useful libraries, but the author found the verboseness of it tended to make finding the correct method calls more difficult, especially given some of the fairly standard naming used by other languages. 
+
+Breaking down the mark scheme the author has predicted the grade which should be given for each part, this is shown in table~\ref{tab:marks}.
+
+Therefore, the author feels a mark of 82\% should be awarded. The values chosen were based on the following reasons:
+
+\begin{description}
+\item[Documentation] This report gives details of the process taken to build the iOS Welsh Vocabulary Application, the problems encountered during this process, what was learned during this project and this indication of which mark should be awarded.
+\item[Implementation] All the feature request were implemented and the design, code and database structure now meet functionality needed to implement these feature request. The implemented code uses sensible names and structure and errors are caught and handled where needed.
+\item[Flair] The hangman and translation games both use element which allow them to be displayed in a very user friendly way.
+\item[Testing] No testing was done using browser developer tools and the author wonders why the specification asks for these tools to be used for a native phone application. Despite this, testing has been performed using the iOS simulator and evidence has been produced in the testing section.
+\end{description}
 
 \begin{table}[h]
 \centering
